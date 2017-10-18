@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -31,10 +30,9 @@ class OrderController {
     }
 
     private ResponseEntity buildResponse(Order order) {
-        URI location = ServletUriComponentsBuilder
+        val location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(order.getId()).toUri();
-
         return ResponseEntity.created(location).build();
     }
 
